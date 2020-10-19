@@ -1,0 +1,16 @@
+{
+  "name": "ConversorImagemJsonJS",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Andre Marasca",
+  "license": "GPLv3",
+  "dependencies": {
+    "image-size": "^0.9.1",
+    "png-js": "^1.0.0"
+  }
+}
