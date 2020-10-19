@@ -3,7 +3,7 @@
 
 var PNG = require("png-js");
 
-let nomeImagem = "RACIOCINIO";
+let nomeImagem = "rosto";
 let caminhoImagem = __dirname + `/Entrada/${nomeImagem}.png`;
 
 var sizeOf = require("image-size");
@@ -25,7 +25,6 @@ function embaralhar(array) {
 
 PNG.decode(caminhoImagem, (pixels) => {
   let blocosPretos = [];
-  let blocosBrancos = [];
   let M = dimensions.height;
   let N = dimensions.width;
   let L = pixels.length / (M * N);
@@ -39,17 +38,14 @@ PNG.decode(caminhoImagem, (pixels) => {
         }
       }
       if (cor) {
-        blocosPretos.push([M - i, 0, j]);
-      } else {
-        blocosBrancos.push([M - i, 0, j]);
+        blocosPretos.push([-j, 0, M - i]);
       }
     }
   }
-  let blocos = { blocks: [] };
-  blocos.blocks = blocosBrancos.length < blocosPretos.length ? blocosBrancos : blocosPretos;
-  embaralhar(blocos.blocks);
+  embaralhar(blocosPretos);
+  let blocos = { blocks: blocosPretos };
   let cJSON = JSON.stringify(blocos);
-  console.log(cJSON);
+  //console.log(cJSON);
   const caminho = __dirname + `/Saida/${nomeImagem}.json`;
   require("fs").writeFile(caminho, cJSON, (err) => {
     console.log(err || "Arquivo Salvo!");
